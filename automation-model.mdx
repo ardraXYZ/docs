@@ -1,41 +1,41 @@
-﻿---
+---
 title: "Automation model"
-description: "Como bots e telemetria funcionam no Ardra."
+description: "How bots and telemetry behave inside Ardra."
 ---
 
-## Fluxo de execucao
+## Execution flow
 
-1. **Autenticacao:** o piloto entra no ArdraHubbot, faz login via SIWS ou NextAuth e vincula wallets Solana/EVM.
-2. **Escolha do preset:** cada Perp DEX possui um conjunto de parametros homologado (pares, tamanho inicial, limites de perda, funding alerts).
-3. **Orquestracao:** o backend inicia o bot em um worker isolado, injeta credenciais criptografadas e liga a transmissao de logs.
-4. **Telemetria:** eventos como fills, funding, erros e stops sao enviados para o dashboard/Telegram em tempo real.
-5. **Encerramento:** quando o piloto pausa ou o bot detecta risco, o worker finaliza, persiste o ultimo estado e libera o slot.
+1. **Authentication:** The pilot opens ArdraHubbot, signs in via SIWS or NextAuth, and links Solana/EVM wallets.
+2. **Preset selection:** Every perp DEX ships with an approved parameter pack (pairs, starting size, loss limits, funding alerts).
+3. **Orchestration:** The backend spins the bot up inside an isolated worker, injects encrypted credentials, and turns on the log stream.
+4. **Telemetry:** Fills, funding updates, errors, and stops are pushed to the dashboard/Telegram in real time.
+5. **Shutdown:** When the pilot pauses or the bot detects risk, the worker finalizes, persists the last state, and frees the slot.
 
-## Entradas principais
+## Key inputs
 
-- **Perp venue:** Aster, Hyperliquid, Backpack, Avantis e outros suportados.
-- **Wallets e chaves de API:** nunca ficam em extensoes; sao armazenadas via Prisma com criptografia em repouso.
-- **Presets:** definem horario, simbolos, tipo de farming (volume, maker rebate, funding). Presets podem ser clonados para squads parceiros.
+- **Perp venue:** Aster, Hyperliquid, Backpack, Avantis, and the rest of the supported roster.
+- **Wallets and API keys:** Never stored in extensions; Prisma keeps them encrypted at rest.
+- **Presets:** Define schedule, symbols, and farming intent (volume, maker rebate, funding). Squads can clone them for partner playbooks.
 
-## Sinais do dashboard
+## Dashboard signals
 
 <Columns cols={2}>
-  <Card title="Status do bot" icon="satellite-dish">
-    Mostra se a sessao esta rodando, pausada ou aguardando confirmacao do piloto.
+  <Card title="Bot status" icon="satellite-dish">
+    Shows whether the session is running, paused, or waiting for a pilot confirmation.
   </Card>
   <Card title="Funding & fees" icon="coins">
-    Calcula funding acumulado, fees e rebate enviado ao leaderboard.
+    Tallies cumulative funding, fees, and rebates pushed to the leaderboard.
   </Card>
-  <Card title="Logs estruturados" icon="file-lines">
-    Cada acao relevante (ordem, erro, restart) gera uma linha com timestamp e contexto.
+  <Card title="Structured logs" icon="file-lines">
+    Every relevant action (order, error, restart) writes a timestamped line with context.
   </Card>
-  <Card title="Alertas" icon="triangle-exclamation">
-    Alertas de risco sao enviados no bot e no painel; exigem ACK antes de retomar a execucao.
+  <Card title="Alerts" icon="triangle-exclamation">
+    Risk alerts fire in the bot and dashboard; they require an ACK before execution resumes.
   </Card>
 </Columns>
 
-## Melhores praticas
+## Best practices
 
-- Use apenas presets homologados pela equipe do Ardra ou revisados por voce.
-- Mantenha o ArdraHubbot aberto durante sessoes longas para responder a prompts de confirmacao.
-- Crie workflows de revisao semanal analisando logs exportados para entender funding real vs. previsto.
+- Use only presets vetted by the Ardra team or reviewed by your squad.
+- Keep ArdraHubbot open during long sessions so you can answer confirmation prompts.
+- Run weekly reviews by exporting logs to reconcile actual versus expected funding.

@@ -1,50 +1,52 @@
-﻿---
+---
 title: "Referral flywheel"
-description: "Como pontos e fees circulam dentro do Ardra."
+description: "How points and fees circulate inside Ardra."
 ---
 
-## Componentes do score
+## Score components
 
-- **Pontos diretos:** cada venue tem uma tabela de conversao baseada em volume, numero de ordens e tempo conectado.
-- **Referral points:** 10% do que um referral direto gera entra no seu total. Se voce tiver squads abaixo de voce, esse numero escala rapido.
-- **Fees creditados:** 20% do fee liquido do referral e creditado em USD equivalente para acompanhar ROI.
+- **Direct points:** Each venue has a conversion table based on volume, order count, and connected time.
+- **Referral points:** 10% of a direct referral's score rolls into your total. Squads stacked under you make this number ramp quickly.
+- **Credited fees:** 20% of a referral's net fees are credited in USD so you can track ROI.
 
-## Por que construir rede
+## Why build a network
 
-<Card title="Resiliência" icon="network-wired">
-  Mesmo se sua sessao estiver pausada, os referrals continuam pontuando.
-</Card>
-<Card title="Gobernanca" icon="trophy">
-  Tiers (Wood -> Diamond) dependem do mix entre pontos proprios e da rede.
-</Card>
-<Card title="Alinhamento" icon="handshake">
-  Cada referral compartilha dashboards que mostram o quanto estao contribuindo.
-</Card>
+<Columns cols={3}>
+  <Card title="Resilience" icon="network-wired">
+    Even if your session is paused, referrals keep generating points.
+  </Card>
+  <Card title="Governance" icon="trophy">
+    Tiers (Wood → Diamond) depend on the mix of personal and network points.
+  </Card>
+  <Card title="Alignment" icon="handshake">
+    Every referral shares dashboards showing exactly how much they contribute.
+  </Card>
+</Columns>
 
-## Como cadastrar referrals
+## How to register referrals
 
-1. Gere seu link/QR code dentro do Ardra (Dashboard > Referrals).
-2. Peça para o novo piloto criar conta passando pelo link ou informando seu refCode.
-3. Assim que o piloto terminar o onboarding, ele aparece no Dashboard com status `pending` ate realizar a primeira execucao.
+1. Generate your link/QR code inside Ardra (Dashboard > Referrals).
+2. Ask the new pilot to create an account through the link or by entering your refCode.
+3. Once onboarding finishes, the pilot shows up in the Dashboard with status `pending` until the first execution completes.
 
-## KPI sugeridos
+## Suggested KPIs
 
-| Indicador | Como usar |
+| Metric | How to use it |
 | --- | --- |
-| Pts diretos x rede | Mantem proporcao saudavel (ideal >= 60% direto). |
-| Fee share por referral | Identifica quem precisa de apoio para configurar presets melhores. |
-| Tempo medio para ativar | Mede quantos dias entre convide e primeira execucao. |
+| Direct vs. network points | Keep a healthy ratio (ideal ≥ 60% direct). |
+| Fee share per referral | Spot who needs help configuring better presets. |
+| Average activation time | Measure days between invite and first execution. |
 
-## FAQ rapido
+## Quick FAQ
 
 <AccordionGroup>
-  <Accordion title="Posso editar a porcentagem de pontos?">
-    As proporcoes sao definidas globalmente pela equipe Ardra. Mudancas sao comunicadas no Discord oficial.
+  <Accordion title="Can I change the point percentages?">
+    Percentages are defined globally by the Ardra team. Any changes are announced in the official Discord.
   </Accordion>
-  <Accordion title="Existe multilevel?">
-    Hoje apenas referrals diretos contam para o score. A roadmap inclui tiers especiais para squads que atingirem metas mensais.
+  <Accordion title="Is there multilevel credit?">
+    Today only direct referrals count toward the score. The roadmap includes special tiers for squads that hit monthly targets.
   </Accordion>
-  <Accordion title="Onde vejo o que cada referral gerou?">
-    Em `/dashboard` ha a tabela Network intelligence com pontos, fees e ultimas execucoes de cada referral.
+  <Accordion title="Where do I see each referral's output?">
+    `/dashboard` features the Network Intelligence table with points, fees, and last executions for every referral.
   </Accordion>
 </AccordionGroup>
