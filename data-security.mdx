@@ -1,0 +1,41 @@
+﻿---
+title: "Data & security"
+description: "Persistencia, auditoria e monitoramento dentro do Ardra."
+---
+
+## Stack de dados
+
+- **Prisma + Supabase:** banco Postgres administrado com migrations versionadas.
+- **Snapshots JSON:** quando ha manutencao ou queda da base, o ingest grava arquivos em disco (`/data/leaderboard-import.json`).
+- **Jobs batch:** normalizam planilhas, aplicam taxas e recalculam leaderboard/per-dex.
+
+## Autenticacao e acesso
+
+<Columns cols={2}>
+  <Card title="SIWS / NextAuth" icon="id-card">
+    Solana Sign-in with Wallet e providers classicos garantem prova criptografica de sessao.
+  </Card>
+  <Card title="Scopes" icon="user-shield">
+    Apenas usuarios com role `pilot` conseguem acionar bots; `admin` adiciona presets e importa dados.
+  </Card>
+</Columns>
+
+## Logs e alertas
+
+- Logs de execucao sao enviados para stdout e armazenados em arquivos rotacionados (`/app/api/aster/logs`).
+- Qualquer erro nao tratado dispara alerta no Discord/Telegram interno.
+- Leaderboard jobs possuem health-check (`/app/bots/keepalive`) para garantir que o worker nao esteja congelado.
+
+## Politicas operacionais
+
+1. **Sem credenciais no navegador:** tudo passa pelo backend ou pelo ArdraHubbot.
+2. **Backups diarios:** snapshots e dumps do Postgres sao guardados em bucket privado.
+3. **Auditoria imutavel:** importacoes de leaderboard ficam versionadas para reproduzir rankings.
+4. **Revisoes de preset:** antes de liberar um preset novo, rodamos 24h de testes em sandboxes.
+
+## Checklist de conformidade
+
+- [ ] Habilite 2FA na sua conta Ardra.
+- [ ] Revise acessos de referrals todo mes.
+- [ ] Baixe logs criticos e armazene no seu provedor SIEM.
+- [ ] Configure alertas personalizados usando os webhooks do Ardra (roadmap Q4).

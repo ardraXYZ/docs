@@ -1,0 +1,41 @@
+﻿---
+title: "Automation model"
+description: "Como bots e telemetria funcionam no Ardra."
+---
+
+## Fluxo de execucao
+
+1. **Autenticacao:** o piloto entra no ArdraHubbot, faz login via SIWS ou NextAuth e vincula wallets Solana/EVM.
+2. **Escolha do preset:** cada Perp DEX possui um conjunto de parametros homologado (pares, tamanho inicial, limites de perda, funding alerts).
+3. **Orquestracao:** o backend inicia o bot em um worker isolado, injeta credenciais criptografadas e liga a transmissao de logs.
+4. **Telemetria:** eventos como fills, funding, erros e stops sao enviados para o dashboard/Telegram em tempo real.
+5. **Encerramento:** quando o piloto pausa ou o bot detecta risco, o worker finaliza, persiste o ultimo estado e libera o slot.
+
+## Entradas principais
+
+- **Perp venue:** Aster, Hyperliquid, Backpack, Avantis e outros suportados.
+- **Wallets e chaves de API:** nunca ficam em extensoes; sao armazenadas via Prisma com criptografia em repouso.
+- **Presets:** definem horario, simbolos, tipo de farming (volume, maker rebate, funding). Presets podem ser clonados para squads parceiros.
+
+## Sinais do dashboard
+
+<Columns cols={2}>
+  <Card title="Status do bot" icon="satellite-dish">
+    Mostra se a sessao esta rodando, pausada ou aguardando confirmacao do piloto.
+  </Card>
+  <Card title="Funding & fees" icon="coins">
+    Calcula funding acumulado, fees e rebate enviado ao leaderboard.
+  </Card>
+  <Card title="Logs estruturados" icon="file-lines">
+    Cada acao relevante (ordem, erro, restart) gera uma linha com timestamp e contexto.
+  </Card>
+  <Card title="Alertas" icon="triangle-exclamation">
+    Alertas de risco sao enviados no bot e no painel; exigem ACK antes de retomar a execucao.
+  </Card>
+</Columns>
+
+## Melhores praticas
+
+- Use apenas presets homologados pela equipe do Ardra ou revisados por voce.
+- Mantenha o ArdraHubbot aberto durante sessoes longas para responder a prompts de confirmacao.
+- Crie workflows de revisao semanal analisando logs exportados para entender funding real vs. previsto.
