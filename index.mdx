@@ -1,41 +1,197 @@
-﻿---
-title: "Ardra overview"
-description: "Tudo que voce precisa para entender o Ardra Hub."
+---
+title: "Ardra automation, crystal clear"
+description: "Ardra is the command center for airdrop farming on perpetual DEXs."
 ---
 
-## O que e o Ardra
+<Info>
+  Ardra centralizes bots, custody, telemetry, and the referral economy so squads can scale volume without stitching tools together.
+</Info>
 
-Ardra e o hub operacional para squads que querem farmar pontos e fees em Perp DEX sem montar uma infraestrutura propria. Os bots sao executados no ArdraHubbot (Telegram) e no painel web, compartilham presets auditados e gravam telemetria em tempo real para que o time veja volume, funding e estado de cada sessao.
+## Overview
 
-- **Um unico centro de comando:** escolha o venue, vincule wallets e acione o bot sem abrir extensoes ou scripts locais.
-- **Rede como vantagem competitiva:** o leaderboard soma o que voce gera e o que sua base de referrals entrega, com tiers que destravam boosts.
-- **Observabilidade nativa:** logs, erros e snapshots de ingest ficam armazenados fora do bot, entao uma queda nao apaga auditoria.
+Ardra is the control plane for venue-specific bots across the perpetual DEX ecosystem. Pilots authenticate once, launch automation from Telegram or the dashboard, and track funding, slippage, and referrals without leaving a single interface. These docs mirror the live experience—from SIWE authentication through leaderboard economics—so every operator knows how the stack fits together.
 
-## Pilares do produto
+### Live today
 
 <Columns cols={3}>
-  <Card title="Automacao" icon="robot">
-    Presets curados por venue, controle de risco e monitoramento continuo das execucoes.
+  <Card title="Aster bot" icon="robot">
+    Smart scalping on Aster DEX runs inside ArdraHubbot on Telegram—no installers, guardrails baked in.
   </Card>
-  <Card title="Economia" icon="chart-line">
-    Sistema de pontos + fees que recompensa farming direto e em rede.
+  <Card title="Referral flywheel" icon="users-line">
+    Points compound via a 10% direct rebate + 20% network share. Every pilot and referral sees their stack in real time.
   </Card>
-  <Card title="Dados" icon="shield">
-    Prisma + Supabase com snapshots JSON garantem persistencia e auditoria mesmo offline.
+  <Card title="Data spine" icon="database">
+    Prisma + Supabase keep ingestion resilient. Leaderboard jobs snapshot uploads so no update silently fails.
   </Card>
 </Columns>
 
-## Como navegar nestes docs
+### Interconnected perp DEX orbit
 
-<Card title="Automacao" icon="plug" href="/automation-model" horizontal>
-  Entenda como os bots sao orquestrados e como interagir com o ArdraHubbot.
-</Card>
-<Card title="Referral flywheel" icon="users" href="/referral-flywheel" horizontal>
-  Veja como pontos e fees sao calculados para voce e sua rede.
-</Card>
-<Card title="Data & security" icon="lock" href="/data-security" horizontal>
-  Descubra como protegemos dados, como funcionam backups e alertas.
-</Card>
-<Card title="Getting started" icon="list-check" href="/getting-started" horizontal>
-  Checklist rapido para configurar acessos, wallets e primeira execucao.
-</Card>
+Every venue ties back into Ardra's control plane. Liquidity, custody, and referrals stay synchronized while pilots rotate strategies between bots.
+
+<Columns cols={3}>
+  <Card title="Aster" icon="bolt">
+    Latency-tuned scalper anchoring the current stack.
+  </Card>
+  <Card title="Pacifica" icon="circle-nodes">
+    Dual-wallet orchestration built for referral rotations.
+  </Card>
+  <Card title="Backpack" icon="wallet">
+    Exchange-grade custody with wallet-native flows.
+  </Card>
+  <Card title="Hyperliquid" icon="wave-pulse">
+    On-chain L1 venue with dedicated latency routing.
+  </Card>
+  <Card title="Avantis" icon="globe">
+    Global leverage surface coupled with zero-fee tiers.
+  </Card>
+  <Card title="ApeX" icon="chart-line">
+    Exchange-native spreads aligned with ApeX partner tiers.
+  </Card>
+</Columns>
+
+## Product pillars
+
+Ardra is built on three non-negotiables: automation that respects venue incentives, a referral engine stitched into every flow, and transparent progression toward airdrops and partner rewards.
+
+<Columns cols={3}>
+  <Card title="Volume-aligned automation" icon="gauge">
+    Bots stay latency-aware, read funding, and rotate across curated symbol sets made for point farming on perpetual DEXs.
+  </Card>
+  <Card title="Network flywheel" icon="share-nodes">
+    Referral capture is native. Wallet logins, cookies, and Prisma relations keep rebates, fee splits, and invites mapped to a refCode.
+  </Card>
+  <Card title="Transparent progression" icon="trophy">
+    Leaderboard tiers expose the math—10% direct rebate, 20% network share, up to 50% for top partners.
+  </Card>
+</Columns>
+
+## Automation stack
+
+Ardra links client-side agents, App Router APIs, and ingestion utilities. Understanding each layer makes it easier to extend or plug into the platform.
+
+<Columns cols={3}>
+  <Card title="Client-side agents" icon="telegram">
+    Automation now lives inside ArdraHubbot. `/link` commands ingest credentials once, guardrails lock beta presets, and fills stream back to chat in real time.
+  </Card>
+  <Card title="Control plane APIs" icon="code">
+    Next.js routes such as `/api/aster/*` and `/api/users/*` manage lifecycle events. Everything gates on `auth()`, spawns workers via `child_process`, and returns structured JSON.
+  </Card>
+  <Card title="Data orchestration" icon="layer-group">
+    Leaderboard ingestion merges on-chain IDs with spreadsheet uploads. Prisma on Supabase is the source of truth, while `lib/user-store.ts` snapshots protect pipelines offline.
+  </Card>
+</Columns>
+
+### Venue rollout status
+
+<Columns cols={2}>
+  <Card title="Aster · Live" icon="rocket">
+    Python strategy orchestrated by `lib/aster-manager`. Store keys, write config, POST `/api/aster/start`, and guardrails handle restarts plus funding awareness.
+  </Card>
+  <Card title="Hyperliquid · Staging" icon="satellite-dish">
+    Latency-optimized connector with point optimizer toggles. UI cards already exist under `/bots/hyperliquid`, awaiting custody validation.
+  </Card>
+  <Card title="Backpack · Staging" icon="wallet">
+    Wallet–exchange blend demands dual session storage. Config scaffolding mirrors Aster so orchestration tooling is reusable.
+  </Card>
+  <Card title="Pacifica, Paradex, Avantis, ApeX, StandX, Lighter, OUTKAST · In design" icon="diagram-project">
+    Each bot ships with venue-specific taglines, referral schema, and risk rails. Ops maintains parity so switching venues keeps the same control plane.
+  </Card>
+</Columns>
+
+## Command center
+
+The command center is the pilot's bridge. It exposes API-backed controls and live UI states so operators configure bots, launch sessions, and inspect telemetry without context switching.
+
+<Columns cols={2}>
+  <Card title="Configuration workspace" icon="sliders">
+    Wallet inventory lives in `profileWallets` and surfaces through `/api/users/wallets`. Strategy presets save via `writeUserConfig`, keeping API secrets off the cloud while diffs show exactly what changed.
+  </Card>
+  <Card title="Runtime observability" icon="wave-square">
+    Session heartbeat endpoints like `/api/aster/status` report PID, uptime, and last error. Buffered logs keep the last 1,000 lines per user, while UI cards animate via Anime.js when new data lands.
+  </Card>
+  <Card title="Operational safeguards" icon="shield-halved">
+    Launches validate config existence before touching venues. Stop commands always fire—even if the worker exited—ensuring cleanup, and login logs captured with Prisma provide a tamper-evident trail.
+  </Card>
+  <Card title="Ecosystem visibility" icon="ranking-star">
+    Leaderboard rows include referrer + referred codes for multi-hop attribution. Exports mirror spreadsheet imports so partners reconcile incentives on both sides.
+  </Card>
+</Columns>
+
+## Referral & points economy
+
+Ardra rewards execution and network growth simultaneously. The same logic powering marketing claims feeds the live leaderboard and partner dashboards.
+
+- **Direct rebate — 10%:** Every trade executed through Ardra returns 10% of venue fees. `feesGenerated` stays visible per row for reconciliation.
+- **Network share — 20%:** `ReferralCapture` feeds Prisma relations so referred volume multiplies by 0.20 and stores as `referralFees`.
+- **Partner tiers — up to 50%:** Tier unlock logic lives in the importer, leaving room for DAO-controlled multipliers without refactoring UI.
+
+**Data flow**
+1. Referral codes originate from `ensureUserRefCode` and attach during login.
+2. Volume imports reconcile wallet identifiers with owner refCodes before computing totals.
+3. Leaderboard APIs serve aggregated `points`, `feesGenerated`, and `referralPoints`, enabling instant UI updates and CSV exports.
+
+## Data & identity layer
+
+Prisma abstracts a Supabase-hosted Postgres cluster. Authentication relies on NextAuth with Solana Sign-In (SIWS); every session logs IP, user agent, and method metadata for auditability. Wallet addresses persist in the `Wallet` table, referral relations bind referrers to referees, and production traffic stores Solana addresses exclusively.
+
+When the database is unreachable, ingest falls back to JSON snapshots in `lib/user-store.ts`, ensuring leaderboard updates never silently fail. Once connectivity returns, data merges back without duplicating refCodes.
+
+### Key models
+
+- **User:** canonical profile with username, referral code, and wallet snapshot metadata.
+- **Wallet:** chain-tagged address records with custody hints.
+- **Referral:** directed edges mapping referrer → referred for payouts.
+- **LoginLog:** append-only audit trail for every authentication attempt.
+- **SiweNonce:** expiring records that secure Solana signature flows.
+
+## Security & observability
+
+- **Custody posture:** Credentials captured via ArdraHubbot stay encrypted through Prisma before any venue call. Keys decrypt in-memory per request, never hitting disk.
+- **Audit events:** `createLoginLog` records every authentication attempt with IP and user agent via Next headers for breach monitoring.
+- **Error recovery:** Spawned processes capture stderr prefixed with `[err]`, and status endpoints surface the last message so operators know whether retries are safe.
+- **Rate & session control:** NextAuth issues short-lived JWTs, sensitive routes disable caching (`cache: "no-store"`), and referral cookies sanitize + uppercase codes before storage.
+
+## Getting started
+
+<Steps>
+  <Step title="Create or access an account">
+    Connect your Solana wallet using the SIWS flow. `lib/auth.ts` issues credentials and generates a refCode for every pilot.
+  </Step>
+  <Step title="Capture referrals (optional)">
+    Share `https://www.ardra.xyz/?ref=YOURCODE`. The `ReferralCapture` provider stores the code in cookies/localStorage until signup.
+  </Step>
+  <Step title="Launch ArdraHubbot on Telegram">
+    Visit [https://t.me/ArdraHubbot](https://t.me/ArdraHubbot), tap **Start**, and finish the SIWS handshake so the bot can run commands for your account.
+  </Step>
+  <Step title="Link bots inside Telegram">
+    Use `/link aster`, `/link backpack`, or `/link pacifica` to authorize wallet/API access. Credentials store encrypted via Prisma before touching venue APIs.
+  </Step>
+  <Step title="Launch and monitor">
+    Send `/run aster` (or the relevant command) to spin up automation. Funding cues, fills, and guardrail alerts stream directly into chat.
+  </Step>
+  <Step title="Review points and referrals">
+    Open `/leaderboard` or your profile dashboard to monitor `points`, `referralPoints`, and fees in near real time.
+  </Step>
+</Steps>
+
+- [Sign in to Ardra](https://www.ardra.xyz/login)
+- [Explore bots](https://www.ardra.xyz/bots)
+- [Check the leaderboard](https://www.ardra.xyz/leaderboard)
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Why does Ardra insist on local custody for bots?">
+    Running automation from the pilot's environment keeps API keys and signing devices under user control. Ardra orchestrates processes but never proxies keys through shared infrastructure.
+  </Accordion>
+  <Accordion title="How are referrals linked if someone signs up days later?">
+    Referral cookies persist for 30 days. On sign-in, `attachReferralIfAny` in `lib/auth.ts` binds the new user to the stored refCode so downstream imports map volume correctly.
+  </Accordion>
+  <Accordion title="Can teams audit leaderboard updates?">
+    Yes. Import jobs persist raw files, normalize identifiers, and emit snapshots stored through `saveImportedLeaderboard`, so operators can download CSVs for compliance trails.
+  </Accordion>
+  <Accordion title="What happens if a bot crashes mid-cycle?">
+    Process exits flip the status to `error`, persist the last message, and expose it via `/api/aster/status`. The UI prompts for restart once the operator reviews logs.
+  </Accordion>
+</AccordionGroup>
