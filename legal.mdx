@@ -1,0 +1,51 @@
+---
+title: "Legal"
+description: "Policies that govern custody, security, data handling, and operator obligations."
+---
+
+## Governance principles
+
+- **Custody stays local:** Ardra never proxies private keys or API secrets through shared infrastructure. Credentials only flow through ArdraHubbot or the backend and remain encrypted via Prisma at rest.
+- **Operator accountability:** Every launch, stop, and config edit is tied to an authenticated user via NextAuth + SIWS so audit trails are undeniable.
+- **Regulated rollout:** New venues and presets ship only after custody assumptions, KYC/AML surface area, and referral disclosures are reviewed.
+
+## Data protection
+
+- **Prisma + Supabase:** Managed Postgres with versioned migrations and strict Row Level Security where applicable.
+- **JSON snapshots:** During maintenance windows, ingest jobs persist to `/data/leaderboard-import.json` so no leaderboard update is lost.
+- **Daily backups:** Database dumps and snapshots live in an encrypted private bucket with 30-day retention.
+
+## Access and authentication
+
+<Columns cols={2}>
+  <Card title="SIWS / NextAuth" icon="id-card">
+    Solana Sign-In with Wallet plus traditional providers supply cryptographic proof of session. SIWS nonces in `SiweNonce` block replay attacks.
+  </Card>
+  <Card title="Role-scoped actions" icon="user-shield">
+    Only the `pilot` role can trigger bots; `admin` manages presets, imports, and partner tooling.
+  </Card>
+</Columns>
+
+## Logging and alerting
+
+- Execution logs stream to stdout and rotate under `/app/api/aster/logs`.
+- Unhandled errors ping Discord/Telegram alert channels for 24/7 awareness.
+- Leaderboard jobs answer a health-check at `/app/bots/keepalive` so Ops can verify ingest status.
+
+## Operational policies
+
+1. **No credentials in the browser:** Wallet keys and API secrets never render client-side.
+2. **Preset reviews:** Every preset spends 24 hours in sandbox runs before being made available to pilots.
+3. **Immutable imports:** Leaderboard uploads remain versioned for replayable rankings.
+4. **Incident retention:** Login logs and bot transcripts are stored per compliance requirements and removed upon written request from the owner.
+
+## Compliance checklist
+
+- [ ] Enable 2FA on every Ardra account used by your squad.
+- [ ] Review referral access each month and revoke stale invites.
+- [ ] Export critical logs into your SIEM for long-term storage.
+- [ ] Configure custom alerts via Ardra webhooks (roadmap Q4) to map into internal runbooks.
+
+## Disclaimer
+
+Ardra does not provide investment advice. Running bots on perpetual DEXs carries market, technical, and custody risk. Each operator is responsible for ensuring that their use of Ardra complies with applicable laws, tax rules, and venue-specific agreements. By launching a bot you acknowledge these risks and confirm that you have obtained all necessary approvals from your organization.

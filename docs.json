@@ -14,18 +14,46 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Welcome",
+            "group": "Ardra",
             "pages": [
-              "index"
+              "index",
+              "getting-started"
             ]
           },
           {
-            "group": "Operate",
+            "group": "Ardra Points",
             "pages": [
-              "automation-model",
-              "referral-flywheel",
-              "data-security",
-              "getting-started"
+              "ardra-points"
+            ]
+          },
+          {
+            "group": "Rebate System",
+            "pages": [
+              "rebate-system"
+            ]
+          },
+          {
+            "group": "Referral System",
+            "pages": [
+              "referral-system"
+            ]
+          },
+          {
+            "group": "Bots",
+            "pages": [
+              "bots"
+            ]
+          },
+          {
+            "group": "Roadmap",
+            "pages": [
+              "roadmap"
+            ]
+          },
+          {
+            "group": "Legal",
+            "pages": [
+              "legal"
             ]
           }
         ]

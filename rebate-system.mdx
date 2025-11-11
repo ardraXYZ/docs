@@ -1,0 +1,29 @@
+---
+title: "Rebate system"
+description: "Direct and network rebates that reward execution inside Ardra."
+---
+
+## Components
+
+- **Direct rebate — 10%:** Every trade executed through Ardra returns 10% of venue fees back to the pilot.
+- **Network share — 20%:** Referral capture multiplies referred volume by 0.20 so network owners participate in downstream rebates.
+- **Partner tiers — up to 50%:** Tier unlock logic in the leaderboard importer leaves room for DAO-controlled multipliers without refactoring the UI.
+
+## Payout lifecycle
+
+1. **Execution:** Bots stream fills and venue fees as they happen.
+2. **Aggregation:** Fees enter Prisma via ingest jobs and are tagged to pilots plus their sponsor refCodes.
+3. **Reconciliation:** `/leaderboard` and CSV exports expose `feesGenerated` and `referralFees` so partners can compare against venue statements.
+4. **Payout:** Ardra settles rebates on the cadence defined in partner agreements (default weekly).
+
+## Safeguards
+
+- **Immutable snapshots:** `saveImportedLeaderboard` keeps every ingest run on disk for audit trails.
+- **Access controls:** Only `admin` users can approve payouts or edit multiplier tables.
+- **Alerting:** Any discrepancy between venue exports and Ardra ingest triggers an Ops alert for manual review.
+
+## Tips for squads
+
+- Track both absolute USD rebates and percentages versus fees generated to understand efficiency.
+- Share transparent payout schedules with referrals to keep networks motivated.
+- When experimenting with custom presets, cap size until you confirm rebates offset slippage and funding.

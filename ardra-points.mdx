@@ -1,0 +1,37 @@
+---
+title: "Ardra Points"
+description: "How the leaderboard quantifies effort across venues and networks."
+---
+
+## Overview
+
+Ardra Points merge three signals—direct execution, referral production, and rebate value—into a single leaderboard row. The same math powers public marketing claims and the internal dashboards partners use to reconcile payouts.
+
+## Direct production
+
+- **Volume bands:** Each venue publishes a volume-to-points table aligned with its airdrop program.
+- **Uptime multiplier:** Bots that stay connected for full sessions earn a boost; idle time dampens the score.
+- **Symbol weighting:** Curated symbol sets prevent wash volume and focus liquidity where partners need it.
+
+## Network contribution
+
+- **Referral capture:** `ReferralCapture` stores refCodes via cookies/localStorage before sign-up so downstream imports can bind new wallets.
+- **Network share:** Every referred pilot streams 10% of their direct points to the sponsor in near real time.
+- **Visibility:** `/dashboard` exposes `points`, `referralPoints`, and last execution timestamps so squads can coach their network.
+
+## Fee component
+
+- **Credited fees:** 20% of each referral's venue fees are tracked in USD equivalent to show immediate ROI.
+- **Tier unlocks:** Leaderboard tiers (Wood, Steel, Titanium, Diamond) look at both direct and network outputs, plus credited fees.
+
+## Data flow
+
+1. `ensureUserRefCode` assigns a referral code the moment a user authenticates.
+2. Volume imports reconcile wallet identifiers with owner refCodes and compute point totals.
+3. The leaderboard API serves aggregated rows with `points`, `feesGenerated`, and `referralPoints`, enabling instant UI updates and CSV exports.
+
+## Best practices
+
+- Keep your direct share at or above 60% to avoid over-reliance on referrals.
+- Audit imported spreadsheets weekly to confirm wallets and refCodes match expectations.
+- Coach referrals using the Network Intelligence table so they can unlock higher tiers quickly.
