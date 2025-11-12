@@ -4,10 +4,23 @@
   "name": "Ardra Docs",
   "colors": {
     "primary": "#22d3ee",
-    "light": "#a855f7",
-    "dark": "#0f172a"
+    "light": "#0ea5e9",
+    "dark": "#020617"
   },
   "favicon": "/images/favicon.ico",
+  "appearance": {
+    "defaultColorScheme": "dark"
+  },
+  "background": {
+    "dark": {
+      "type": "radialGradient",
+      "colors": [
+        "#01030a",
+        "#020718",
+        "#041024"
+      ]
+    }
+  },
   "navigation": {
     "tabs": [
       {
@@ -65,19 +78,10 @@
   },
   "logo": {
     "light": "/images/ArdraLogo.png",
-    "dark": "/images/ArdraLogo.png"
+    "dark": "/images/ArdraLogo.png",
+    "height": 40
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Status",
-        "href": "https://status.ardra.xyz"
-      },
-      {
-        "label": "Support",
-        "href": "mailto:manager@ardra.xyz"
-      }
-    ],
     "primary": {
       "type": "button",
       "label": "Launch Ardra",
