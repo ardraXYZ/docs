@@ -1,64 +1,32 @@
 ---
 title: "Bots"
-description: "How Ardra orchestrates venue-specific automation and keeps every run observable."
+description: "Telegram automation today, customized web strategies tomorrow."
 ---
 
-## Active venues
+## Telegram bot (current)
 
-<Columns cols={3}>
-  <Card title="Aster - Live" icon="rocket">
-    Python strategy orchestrated by `lib/aster-manager`. Store keys, write config, POST `/api/aster/start`, and guardrails handle restarts plus funding awareness.
-  </Card>
-  <Card title="Hyperliquid - Staging" icon="satellite-dish">
-    Latency-optimized connector with point optimizer toggles. UI cards are ready under `/bots/hyperliquid`, awaiting final custody validation.
-  </Card>
-  <Card title="Backpack - Staging" icon="wallet">
-    Wallet–exchange blend demands dual session storage. Config scaffolding mirrors Aster so orchestration tooling stays reusable.
-  </Card>
-  <Card title="Pacifica - In design" icon="circle-nodes">
-    Dual-wallet orchestration tuned for referral rotations and squad sharing.
-  </Card>
-  <Card title="Avantis - In design" icon="globe">
-    Zero-fee tiers with leverage presets and liquidity guards baked in.
-  </Card>
-  <Card title="ApeX - In design" icon="chart-line">
-    Exchange-native spreads aligned with ApeX partner tiers.
-  </Card>
-</Columns>
+- **Supported venues:** Aster, Backpack, Pacifica, and Hibachi.
+- **Predefined strategy:** Margin per trade, take profit, and stop loss are preset. You simply configure the venue APIs, start the bot, and it handles execution.
+- **Who it's for:** Ideal for pilots who are not familiar with trading or lack time to stay glued to perp DEXs but still want to generate high volume. The bot prioritizes throughput while keeping PnL impact as low as possible.
 
-## Execution flow
+<Steps>
+  <Step title="Configure APIs in Telegram">
+    Inside ArdraHubbot, add the API keys for the venue you want to automate—no on-chain wallet connection is required for the Telegram bot.
+  </Step>
+  <Step title="Launch via Telegram">
+    Open ArdraHubbot, pick your venue, and hit start. Guardrails ensure every session includes TP/SL and risk controls.
+  </Step>
+  <Step title="Check bot status">
+    Use the `Status` section inside ArdraHubbot to see which venue bot is currently running and which ones are idle on your account.
+  </Step>
+</Steps>
 
-1. **Authentication:** Pilots open ArdraHubbot, sign in via SIWS or NextAuth, and link Solana/EVM wallets exactly once.
-2. **Preset selection:** Each DEX ships with an approved parameter pack (pairs, starting size, loss limits, funding alerts).
-3. **Orchestration:** The backend spins the bot up inside an isolated worker, injects encrypted credentials, and turns on the log stream.
-4. **Telemetry:** Fills, funding updates, errors, and stops push to the dashboard and Telegram in real time.
-5. **Shutdown:** When the pilot pauses or the bot detects risk, the worker finalizes, persists the last state, and frees the slot.
+## Roadmap: web bots
 
-## Inputs the control plane expects
+Ardra is building a web-based automation surface with:
 
-- **Perp venue:** Aster, Hyperliquid, Backpack, Avantis, Pacifica, ApeX, and the rest of the supported orbit.
-- **Wallets and API keys:** Never stored in extensions; Prisma keeps them encrypted at rest and decrypts in-memory per request.
-- **Presets:** Define schedule, symbols, and farming intent (volume, maker rebate, funding). Squads can clone them for partner playbooks.
+- Custom strategies per user, including adjustable indicators and metrics.
+- Expanded venue coverage beyond the current Telegram roster.
+- UI-driven controls so you can tweak presets without touching config files.
 
-## Monitoring surface
-
-<Columns cols={2}>
-  <Card title="Bot status" icon="satellite-dish">
-    Shows whether the session is running, paused, or waiting for a pilot confirmation.
-  </Card>
-  <Card title="Funding & fees" icon="coins">
-    Tallies cumulative funding, fees, and rebates pushed to the leaderboard.
-  </Card>
-  <Card title="Structured logs" icon="file-lines">
-    Every relevant action (order, error, restart) writes a timestamped line with context.
-  </Card>
-  <Card title="Alerts" icon="triangle-exclamation">
-    Risk alerts fire in the bot and dashboard; they require an ACK before execution resumes.
-  </Card>
-</Columns>
-
-## Best practices
-
-- Use only presets vetted by the Ardra team or reviewed by your squad.
-- Keep ArdraHubbot open during long sessions so you can answer confirmation prompts.
-- Run weekly reviews by exporting logs to reconcile actual versus expected funding and fees.
+Stay tuned for release notes as web bots approach launch.

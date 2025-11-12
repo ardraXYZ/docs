@@ -27,14 +27,9 @@
             ]
           },
           {
-            "group": "Rebate System",
+            "group": "Rewards",
             "pages": [
-              "rebate-system"
-            ]
-          },
-          {
-            "group": "Referral System",
-            "pages": [
+              "rebate-system",
               "referral-system"
             ]
           },
@@ -42,12 +37,6 @@
             "group": "Bots",
             "pages": [
               "bots"
-            ]
-          },
-          {
-            "group": "Roadmap",
-            "pages": [
-              "roadmap"
             ]
           },
           {
@@ -86,7 +75,7 @@
       },
       {
         "label": "Support",
-        "href": "mailto:hello@ardra.xyz"
+        "href": "mailto:manager@ardra.xyz"
       }
     ],
     "primary": {
@@ -106,9 +95,7 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/ArdraHub",
-      "github": "https://github.com/ardraXYZ",
-      "linkedin": "https://www.linkedin.com/company/ardra"
+      "x": "https://x.com/ArdraHub"
     }
   }
 }

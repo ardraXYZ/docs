@@ -1,52 +1,36 @@
 ---
 title: "Referral system"
-description: "Structure for capturing pilots, tracking their production, and rewarding the network."
+description: "Grow the network, track output, and monetize downstream trading."
 ---
-
-## Score components
-
-- **Direct points:** Each venue has a conversion table based on volume, order count, and connected time.
-- **Referral points:** 10% of a direct referral's score rolls into your total. Squads stacked under you make this number ramp quickly.
-- **Credited fees:** 20% of a referral's net fees are credited in USD so you can track ROI.
-
-## Why build a network
 
 <Columns cols={3}>
   <Card title="Resilience" icon="network-wired">
-    Even if your session is paused, referrals keep generating points.
+    Even if you pause trading, referrals continue generating fees, points, and rebates that flow back to you.
   </Card>
   <Card title="Governance" icon="trophy">
-    Tiers (Wood -> Diamond) depend on the mix of personal and network points.
+    Tiers (Wood → Diamond) evaluate the mix of personal and network output, unlocking higher rewards during special campaigns.
   </Card>
-  <Card title="Alignment" icon="handshake">
-    Every referral shares dashboards showing exactly how much they contribute.
+  <Card title="Transparency" icon="handshake">
+    Leaderboard + Dashboard detail the exact fees, points, and Ardra Points each referral contributes to themselves and to you.
   </Card>
 </Columns>
 
-## How to register referrals
+## Onboarding referrals
 
-1. Generate your link or QR code inside Ardra (Dashboard > Referrals).
-2. Ask the new pilot to create an account through the link or by entering your refCode.
-3. Once onboarding finishes, the pilot shows up in the Dashboard with status `pending` until the first execution completes.
-
-## Suggested KPIs
-
-| Metric | How to use it |
-| --- | --- |
-| Direct vs. network points | Keep a healthy ratio (ideal >= 60% direct). |
-| Fee share per referral | Spot who needs help configuring better presets. |
-| Average activation time | Measure days between invite and first execution. |
+1. Generate your referral link inside Ardra (Profile → Referrals).
+2. Invite the pilot to create an account through that link or by entering your refCode.
+3. As soon as the pilot signs up with your link/code and connects their wallet, they appear in your dashboard; rebates and points flow automatically once they start trading.
 
 ## Quick FAQ
 
 <AccordionGroup>
-  <Accordion title="Can I change the point percentages?">
-    Percentages are defined globally by the Ardra team. Any changes are announced in the official Discord.
+  <Accordion title="Can I change the percentage split?">
+    Baseline splits (10% direct / 20% referral) are defined centrally, but the affiliate program can boost referral fees up to 50%. A future update will let sponsors share part of their rebate directly with the pilots they refer.
   </Accordion>
   <Accordion title="Is there multilevel credit?">
-    Today only direct referrals count toward the score. The roadmap includes special tiers for squads that hit monthly targets.
+    Today only direct referrals count. Future seasons may include layered rewards for squads that hit volume targets.
   </Accordion>
   <Accordion title="Where do I see each referral's output?">
-    `/dashboard` features the Network Intelligence table with points, fees, and last executions for every referral.
+    The Network Intelligence table in `/dashboard` lists points, fees, and last executions per referral, plus the fees/points attributed to you.
   </Accordion>
 </AccordionGroup>
